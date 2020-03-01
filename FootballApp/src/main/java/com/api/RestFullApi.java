@@ -4,6 +4,7 @@ import java.util.List;
 
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 //import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import com.model.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import com.dbcontroller.CountriesRepository;
 
 @Component
 @RestController
@@ -31,6 +32,9 @@ public class RestFullApi {
 
 	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
+	static RestTemplate restTemplate = new RestTemplate();
+	
+	
 	@Scheduled(fixedRate = 5000)
 	public void reportCurrentTime() {
 		log.info("The time is now {}", dateFormat.format(new Date()));
@@ -38,7 +42,7 @@ public class RestFullApi {
 		//List<Country> countries = getCountries();
 	}
 	
-	static RestTemplate restTemplate = new RestTemplate();
+
 	public List<Country> getCountries(){
 		ResponseEntity<List<Country>> responses = restTemplate.exchange(
 				"https://apiv2.apifootball.com/?action=get_countries&APIkey=25dcebbafa8a6d6b4810bc2d2ffd3d48c5abda234d67d92ed64c68e35b5edcb5",

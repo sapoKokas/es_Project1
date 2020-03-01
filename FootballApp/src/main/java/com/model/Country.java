@@ -1,6 +1,20 @@
 package com.model;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@Entity // This tells Hibernate to make a table out of this class
+@Table(name="countries")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Country {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private String country_id;
 	private String country_name;
 	private String country_logo;
