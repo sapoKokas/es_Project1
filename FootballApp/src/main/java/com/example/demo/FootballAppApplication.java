@@ -10,10 +10,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 import com.dbcontroller.MainController;
-@SpringBootApplication(scanBasePackages={"com.dbcontroler","com.api"})
+@SpringBootApplication(scanBasePackages={"com.dbcontroller","com.api"})
 @EnableScheduling
-@ComponentScan({"com.dbcontroler","com.api"})
-@EnableJpaRepositories({"com.dbcontroler"})
+@ComponentScan({"com.dbcontroller","com.api"})
+@EnableJpaRepositories({"com.dbcontroller"})
 @EntityScan({"com.model"})
 public class FootballAppApplication {
 

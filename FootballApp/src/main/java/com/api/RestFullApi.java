@@ -28,6 +28,10 @@ import com.dbcontroller.CountriesRepository;
 @RestController
 public class RestFullApi {
 	
+
+	@Autowired
+	CountriesRepository countriesRepository; 
+	
 	private static final Logger log = LoggerFactory.getLogger(RestFullApi.class);
 
 	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
@@ -51,6 +55,11 @@ public class RestFullApi {
 				  new ParameterizedTypeReference<List<Country>>(){});
 		List<Country> countries = responses.getBody(); //Leagues list
 		
+		for(int i=0; i<countries.size();i++) {
+			if(countries.get(i)!=null) {
+				countriesRepository.save(countries.get(i));
+			}
+		}
 		return countries;
 	}
 	
