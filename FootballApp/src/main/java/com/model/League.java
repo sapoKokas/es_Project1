@@ -1,10 +1,30 @@
 package com.model;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@Entity
+@Table(name="leagues")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class League {
+	@Id
+	@GeneratedValue
+	private int id;
 	private String country_id;
 	private String country_name;
 	private String league_id;
 	private String league_name;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getCountry_id() {
 		return country_id;
 	}
