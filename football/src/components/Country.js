@@ -1,7 +1,7 @@
 import React,{ Component } from "react";
 
 
-class Countries extends Component{
+class Country extends Component{
     constructor(){
         super();
         this.state={
@@ -10,10 +10,11 @@ class Countries extends Component{
         };
     }
     componentDidMount(){
-        fetch('http://localhost:8080/country')
+        const query = window.location.search;
+        const param = new URLSearchParams(query);
+        fetch('http://localhost:8080/country/leagues/?country_id=' + param.get('id'))
         .then(response => response.json())
         .then(data => this.setState({ data : data, loading:false}));
-        console.log(this.state.data);
     }
 
     render(){
@@ -44,7 +45,7 @@ class Countries extends Component{
                 <main class="site-main" />
                     <section class="mb-30px">
                         <div class="container">
-                            <div class="hero-countries">
+                            <div class="hero-banner">
                             </div>
                         </div>
                     </section>
@@ -57,31 +58,15 @@ class Countries extends Component{
                                     {this.state.data.map(c=>
                                         <div class="col-md-3">
                                         <div class="single-recent-blog-post card-view">
-                                           
-                                               { (c.country_logo===""?
-                                               (
-                                                
-                                                <div class="thumb">
-                                                   
-                                                         <img class="card-img rounded-0" src="img/default-country.jpg" alt=""/>
+            
+                                        <div class="thumb">
                                                     
-                                                    <ul class="thumb-info">
-                                                        <li><a href={"/country?id="+ c.country_id}>{c.country_name}</a></li>
-                                                    </ul>
-                                                    </div>
-                                                   
-                                                ):( 
-                                                    
-                                                    <div class="thumb">
-                                                    <img class="card-img rounded-0" src={c.country_logo} alt=""/>
-                                                 
-                                                        <ul class="thumb-info">
-                                                            <li><a href={"/country?id="+ c.country_id}>{c.country_name}</a></li>
-                                                        </ul>
-                                                    </div>
-                                                   
-                                                 )
-                                               )}
+                                                    <img class="card-img rounded-0" src="img/qlqmerda.png" alt="" style={{ backgroundColor: "rgb("+Math.random()*255+","+Math.random()*255+","+Math.random()*255+")"}}/>
+                                            
+                                            <ul class="thumb-info">
+                                                <li><a href={"/league?id="+ c.league_id}>{c.league_name}</a></li>
+                                            </ul>
+                                            </div>
                                        
                                     </div>
                                     </div>
@@ -95,4 +80,4 @@ class Countries extends Component{
      }
 }
 
-export default Countries;
+export default Country;
