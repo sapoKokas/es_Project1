@@ -24,29 +24,31 @@ import java.util.ArrayList;
 import java.util.Date;
 import com.dbcontroller.CountriesRepository;
 import com.dbcontroller.LeaguesRepository;
-
+import com.KafkaCOntroler.KafkaProducer;
+import com.KafkaCOntroler.MessageStorage;
 @Component
 @RestController
 public class RestFullApi {
+	
+	static RestTemplate restTemplate = new RestTemplate();
 	@Autowired
 	CountriesRepository countriesRepository; 
 	
 	@Autowired
 	LeaguesRepository leaguesRepository;
+
+	@Autowired
+	KafkaProducer producer;
+	
+	@Autowired
+	MessageStorage storage;
 	
 	private static final Logger log = LoggerFactory.getLogger(RestFullApi.class);
 
 	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-	static RestTemplate restTemplate = new RestTemplate();
+
 	
-	
-	//@Scheduled(fixedRate = 5000)
-	public void reportCurrentTime() {
-		log.info("The time is now {}", dateFormat.format(new Date()));
-		log.info("Fetching Country Data...");
-		//List<Country> countries = getCountries();
-	}
 	
 	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping(value="/country",  method = RequestMethod.GET)
@@ -55,7 +57,7 @@ public class RestFullApi {
 		Iterable<Country> countries = countriesRepository.findAll();
 		List<Country> c = new ArrayList<Country>();
 		countries.forEach(e -> c.add(e));
-		System.out.print(c.get(0));
+		//System.out.print(c.get(0));
 		return new ResponseEntity<List<Country>>(c, HttpStatus.OK);		
 	}
 	@CrossOrigin(origins = "http://localhost:3000")
@@ -113,5 +115,13 @@ public class RestFullApi {
 	
 		
 		return new ResponseEntity<List<Standings>>(stds, HttpStatus.OK);			
+	}
+	@CrossOrigin(origins = "http://localhost:3000")
+	@RequestMapping(value="/consumer")
+	public String getAllRecievedMessage(){
+	  String messages = storage.toString();
+	  storage.clear();
+	  
+	  return messages;
 	}	
 }

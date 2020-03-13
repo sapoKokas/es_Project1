@@ -14,6 +14,7 @@ import com.dbcontroller.MainController;
 
 @SpringBootApplication
 @ComponentScan({"com.dbcontroller", "com.api"})
+@ComponentScan({"com.dbcontroler", "com.api","com.KafkaCOntroler"})
 @EnableJpaRepositories({"com.dbcontroller"})
 @EntityScan({"com.model"})	
 public class FootballAppApplication {
