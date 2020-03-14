@@ -16,11 +16,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Date;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.dbcontroller.MainController;
 import com.model.Country;
+import com.model.Games;
 import com.model.League;
 
 @Component
@@ -54,6 +61,17 @@ public class CallRestService {
 		
 		return leagues;
     }
-    
+    public List<Games> GetGames(){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date =	 new Date();
+		String data = dateFormat.format(date);
+		ResponseEntity<List<Games>> responses = restTemplate.exchange(
+				"https://apifootball.com/api/?action=get_events&from="+data+"&to="+data+"&APIkey=c24573c08681f843b34d69519e2053c708c48273b6259cc69d0221d664dde947",
+				HttpMethod.GET,
+				  null,
+				  new ParameterizedTypeReference<List<Games>>(){});
+		List<Games> games = responses.getBody(); //Leagues list
+		return games;
+	}
     
 }

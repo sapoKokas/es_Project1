@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import com.dbcontroller.CountriesRepository;
+import com.dbcontroller.GamesRepository;
 import com.dbcontroller.LeaguesRepository;
 import com.KafkaCOntroler.KafkaProducer;
 import com.KafkaCOntroler.MessageStorage;
@@ -36,6 +37,9 @@ public class RestFullApi {
 	
 	@Autowired
 	LeaguesRepository leaguesRepository;
+
+	@Autowired
+	GamesRepository gamesRepository; 
 
 	@Autowired
 	KafkaProducer producer;
@@ -116,6 +120,22 @@ public class RestFullApi {
 		
 		return new ResponseEntity<List<Standings>>(stds, HttpStatus.OK);			
 	}
+
+	@CrossOrigin(origins = "http://localhost:3000")
+	@RequestMapping(value="/live/",  method = RequestMethod.GET)
+	public ResponseEntity<List<Games>> live() {
+		
+		Iterable<Games> leagues = gamesRepository.findAll();
+		List<Games> c = new ArrayList<Games>();
+		leagues.forEach(e -> {
+			if(e.match_live.equals("1")) {
+				c.add(e);
+			}
+		});
+		
+		return new ResponseEntity<List<Games>>(c, HttpStatus.OK);		
+	}
+
 	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping(value="/consumer")
 	public String getAllRecievedMessage(){

@@ -25,8 +25,11 @@ public class FootballAppApplication {
 		
 		MainController mainController = context.getBean(MainController.class);
 		//CallRestService rest = context.getBean(CallRestService.class);
+		
 		mainController.addCountries();
 		mainController.addLeagues();
+		mainController.addGames();
+		CallRestService rest = context.getBean(CallRestService.class);
 	}
 
 }

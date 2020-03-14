@@ -29,8 +29,10 @@ public class MainController {
 	LeaguesRepository leaguesRepository; 
 
 	@Autowired
-	KafkaProducer producer;
+	GamesRepository gamesRepository;
 
+	@Autowired
+	KafkaProducer producer;
 
 	public String producers(String data){
 		producer.send(data);
@@ -58,5 +60,19 @@ public class MainController {
 		}
 		producers("Leagues added");
 		System.out.println("Leagues added");
+	}
+
+
+	@Scheduled(fixedRate=60000)
+	public void addGames() {
+		List<Games> games= restService.GetGames();
+		for(int i=0; i<games.size();i++) {
+			if(games.get(i)!=null) {
+				gamesRepository.save(games.get(i));
+				}
+			}	
+		
+		producers("Games added");
+		System.out.println("Games added");
 	}
 }
