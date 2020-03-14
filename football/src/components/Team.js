@@ -1,19 +1,23 @@
 import React,{ Component } from "react";
 import Table from "reactstrap/lib/Table";
 
-class Live extends Component{
+class Team extends Component{
     constructor(){
         super();
         this.state={
-            loading:true,
+            loading: true,
             data : []
         };
     }
 
     componentDidMount(){
-        fetch('http://localhost:8080/live/')
+        const query = window.location.search;
+        const param = new URLSearchParams(query);
+        //console.log(param.get('id'))
+        fetch('http://localhost:8080/team/?team_key=' + param.get('id'))
         .then(response => response.json())
         .then(data => this.setState({ data : data, loading:false}));  
+     
     }
 
     render(){
@@ -53,27 +57,23 @@ class Live extends Component{
                     <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
                         <Table style={{marginTop:'-15px',width:"80%", alignSelf:"center"}}>
                             <tr>
-                                <th>match_hometeam_name</th>
-                                <th>match_awayteam_name</th>
-                                <th>match_hometeam_score</th>
-                                <th>match_awayteam_score</th>
-                                <th>match_status</th>
-                                <th>league_name</th>
-                                <th>country_name</th>
-                                <th>match_time</th>
-                                <th>match_date</th>
+                                <th>player_name</th>
+                                <th>player_number</th>
+                                <th>player_country</th>
+                                <th>player_type</th>
+                                <th>player_age</th>
+                                <th>player_match_played</th>
+                                <th>player_goals</th>
                             </tr>
                             {this.state.data.map(c=>
                                 <tr>
-                                    <th>{c.match_hometeam_name}</th>
-                                    <th>{c.match_awayteam_name}</th>
-                                    <th>{c.match_hometeam_score}</th>
-                                    <th>{c.match_awayteam_score}</th>
-                                    <th>{c.match_status}</th>
-                                    <th>{c.league_name}</th>
-                                    <th>{c.country_name}</th>
-                                    <th>{c.match_time}</th>
-                                    <th>{c.match_date}</th>
+                                    <th>{c.player_name}</th>
+                                    <th>{c.player_number}</th>
+                                    <th>{c.player_country}</th>
+                                    <th>{c.player_type}</th>
+                                    <th>{c.player_age}</th>
+                                    <th>{c.player_match_played}</th>
+                                    <th>{c.player_goals}</th>
                                 </tr>
                             )}
                         </Table>
@@ -83,4 +83,4 @@ class Live extends Component{
     }
 }
 
-export default Live;
+export default Team;

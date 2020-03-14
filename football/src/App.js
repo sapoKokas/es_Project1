@@ -6,7 +6,8 @@ import Countries from './components/Countries';
 import Leagues from './components/Leagues';
 import Country from './components/Country';
 import League from './components/League';
-import Standings from './components/Standings';
+import Standings from './components/Standings.js';
+import Team from './components/Team.js';
 import {
     BrowserRouter as Router,
     Switch,
@@ -31,6 +32,9 @@ function App() {
                 </Route>
                 <Route path = "/league/standings" >
                     <Standings/>
+                </Route>
+                <Route path = "/team" >
+                    <Team/>
                 </Route>
                 <Route path = "/" >
                     <Live />

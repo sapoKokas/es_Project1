@@ -1,5 +1,4 @@
 import React,{ Component } from "react";
-import {Button} from 'reactstrap';
 import Table from "reactstrap/lib/Table";
 
 async function fetchURLs() {
@@ -90,14 +89,14 @@ class League extends Component{
                                                         <img class="card-img rounded-0" src="img/default-country.jpg" alt=""/>
                                                 
                                                 <ul class="thumb-info">
-                                                    <li><a href={"/league?id=" + c.league_id}>{c.team_name}</a></li>
+                                                    <li><a href={"/team?id=" + c.team_key}>{c.team_name}</a></li>
                                                 </ul>
                                                 </div>
                                             ):( 
                                                 <div class="thumb">
                                                 <img class="card-img rounded-0" src={c.team_badge} alt=""/>      
                                                     <ul class="thumb-info">
-                                                        <li><a href={"/league?id=" + c.league_id}>{c.team_name}</a></li>
+                                                        <li><a href={"/team?id=" + c.team_key}>{c.team_name}</a></li>
                                                     </ul>
                                                 </div>
                                                 
