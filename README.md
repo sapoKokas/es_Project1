@@ -14,12 +14,19 @@ To run the web-app run the following commands by order:
 
 1-Open a terminal and run the following commands:
 ----------------------------------------
-docker pull mysql:latest
-sudo docker run --name demo -d -p3306:3306 -e MYSQL_ROOT_PASSWORD=password mysql:latest
-sudo docker exec -it demo /bin/bash
-mysql -uroot -ppassword
-CREATE DATABASE football_db;
-USE football_db;
+  ```
+  > docker pull mysql:latest
+
+  > sudo docker run --name demo -d -p3306:3306 -e MYSQL_ROOT_PASSWORD=password mysql:latest
+  
+  > sudo docker exec -it demo /bin/bash
+  
+  > mysql -uroot -ppassword
+  
+  > CREATE DATABASE football_db;
+  
+  > USE football_db;
+  ```
 -----------------------------------------------
 2 - RUN KAFKA:
 To make Kafka run we need to run a broker, 
@@ -51,10 +58,16 @@ which contains the FootballAppApplication.java (main class) and run it (right cl
 Open other terminal
 (for running React js you need npm)
 if you dont have npm justo type the following commmand:
+  ```
+  
   $ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+  
   $ sudo apt install nodejs
+  ```
 if you have npm just type:
+  ```
   $ sudo npm start
+  ```
 Open a web browser and type:
 localhost:3000
 ---------------------------------------------------------------------------
