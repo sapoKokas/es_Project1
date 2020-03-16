@@ -11,7 +11,7 @@ Frontend runs on port: 3000;
 
 To run the web-app run the following commands by order:
 
-Commands to CREATE DATABASE and RUN it:
+
 1-Open a terminal and run the following commands:
 ----------------------------------------
 docker pull mysql:latest
