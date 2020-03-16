@@ -29,6 +29,7 @@ To run the web-app run the following commands by order:
   ```
 -----------------------------------------------
 **2 - RUN KAFKA:**
+
 To make Kafka run we need to run a broker, 
 
   1 - download the kafka file from https://www.apache.org/dyn/closer.cgi?path=/kafka/2.4.1/kafka_2.12-2.4.1.tgz;
@@ -49,8 +50,8 @@ To make Kafka run we need to run a broker,
   
   
 -----------------------------------------------
-commands to RUN API:
-3-Open other terminal and run the api:
+**commands to RUN API:**
+**3-Open other terminal and run the api:**
 
 Open the FootballApp folder(Api folder)
 
@@ -59,6 +60,7 @@ which contains the FootballAppApplication.java (main class) and run it (right cl
 
 -------------------------------------------------------------------------------------------------------
 **4- Finally to RUN the FRONTEND:**
+
 Open other terminal
 (for running React js you need npm)
 if you dont have npm justo type the following commmand:
@@ -73,8 +75,11 @@ if you have npm just type:
   $ sudo npm start
   ```
 Open a web browser and type:
+
 **localhost:3000**
+
 ---------------------------------------------------------------------------
 Now you are able to see our web app working! :)
+
 Note: In case you don't see info in the live section(home) it's because due to the pandemic all games have been cancelled
 and therefore no info is displayed.
