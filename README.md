@@ -24,10 +24,15 @@ USE football_db;
 2 - RUN KAFKA:
 To make Kafka run we need to run a broker, 
   1 - download the kafka file from https://www.apache.org/dyn/closer.cgi?path=/kafka/2.4.1/kafka_2.12-2.4.1.tgz;
+
   2 - > tar -xzf kafka_2.12-2.4.1.tgz;
+  
       > cd kafka_2.12-2.4.1;
+      
   3 - > bin/zookeeper-server-start.sh config/zookeeper.properties;
+  
   4 - > bin/kafka-server-start.sh config/server.properties.
+  
   
 -----------------------------------------------
 commands to RUN API:
